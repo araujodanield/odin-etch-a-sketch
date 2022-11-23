@@ -1,4 +1,4 @@
-# Rock Paper Scissors Game
+# Etch-a-Sketch Online
 
 Fourth project of <a href="https://www.theodinproject.com/about">The Odin Project</a>'s course.
 
