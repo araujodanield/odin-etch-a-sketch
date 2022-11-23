@@ -1,4 +1,28 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(226, 243, 243);
+}
+
+#canvas {
+    display: grid;
+    width: 800px;
+    height: 800px;
+    background-color: aqua;
+    border: 2px solid black;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.pixel {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: red;
+}
+
+.pixel:hover {
+    background-color: yellow;
 }
