@@ -5,24 +5,23 @@
 }
 
 body {
-    background-color: rgb(226, 243, 243);
+    background-color: rgb(0, 21, 39);
 }
 
 #canvas {
     display: grid;
     width: 800px;
     height: 800px;
-    background-color: aqua;
+    background-color: aliceblue;
     border: 2px solid black;
     margin-top: 20px;
     margin-left: 20px;
-}
-
-.pixel {
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    background-color: red;
+    cursor: crosshair;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
 }
 
 .pixel:hover {
-    background-color: yellow;
+    background-color: rgb(204, 210, 216) ;
 }
