@@ -1,8 +1,23 @@
 const body = document.querySelector("body");
 const canvas = document.getElementById("canvas");
+
+const clearBtn = document.createElement("button");
+clearBtn.textContent = "Clear";
+clearBtn.style.backgroundColor = "white" //temporary just to know that it's active. Will be removed after I complete the other buttons logic.
+const randomColorBtn = document.createElement("button");
+randomColorBtn.textContent = "Rainbow Effect";
+const shadowBtn = document.createElement("button");
+shadowBtn.textContent = "Shadow Effect";
+const eraserBtn = document.createElement("button");
+eraserBtn.textContent = "Eraser";
+
+body.appendChild(clearBtn).classList.add("btn");
+body.appendChild(randomColorBtn).classList.add("btn");
+body.appendChild(shadowBtn).classList.add("btn");
+body.appendChild(eraserBtn).classList.add("btn");
+
+
 let mouseIsClicked = false;
-
-
 body.addEventListener("mousedown", () => {
     mouseIsClicked = !mouseIsClicked;
 });
@@ -28,7 +43,11 @@ function createPixels(size) {
                 pixel.style.backgroundColor = "black";
             }
         })
+        clearBtn.addEventListener("click", () => {
+            pixel.style.backgroundColor = "";
+        })
     }
 }
 
-createPixels(65);
+createPixels(30);
+
