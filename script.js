@@ -19,6 +19,7 @@ body.appendChild(shadowBtn).classList.add("btn");
 body.appendChild(eraserBtn).classList.add("btn");
 
 
+// Logic to apply on the canvas. By setting this, the user can only draw when he's holding the left mouse button.
 let mouseIsClicked;
 body.addEventListener("mousedown", () => {
     mouseIsClicked = true;
@@ -41,7 +42,7 @@ function createPixels(size) {
 };
 createPixels(35);
 
-
+// The default pen when the page is loaded.
 const pixels = document.querySelectorAll(".pixel");
 pixels.forEach (pixel => {
     pixel.addEventListener("mousedown", () => {
@@ -54,7 +55,7 @@ pixels.forEach (pixel => {
     })
 });
 
-
+// Clear the canvas by removing the color of all pixels
 function clearCanvas() {
     clearBtn.addEventListener("click", () => {
         pixels.forEach (pixel => {
@@ -63,6 +64,7 @@ function clearCanvas() {
         })
 };
 
+// A simple black pen
 function blackPen() {
     blackBtn.addEventListener("click", () => {
         pixels.forEach (pixel => {
@@ -78,6 +80,7 @@ function blackPen() {
     })
 };
 
+// Add a random color for each pixel on the interaction. To add a new color to a pixel that was already painted you need to click the button again.
 function randomPen() {
     randomBtn.addEventListener("click", () => {
         pixels.forEach (pixel => {
@@ -96,22 +99,64 @@ function randomPen() {
     })
 };
 
-function shadowPen() { // At the moment it's just picking a random opacity between 0 and 1. The correct is stay at 0.1 and increase the opacity with each interaction.
+// A pen that adds 0.1 opacity to the pixel and increases this value in each interaction.
+// OBS: There are a lot of ways to make this logic with fewer lines, but due I'm trying to make this the most "beginner friendly" and visual possible, I opted for an if else statement.
+// It's possible to make this same "visual" logic using the switch statement, but it will be a little longer than the if else.
+function shadowPen() { 
     shadowBtn.addEventListener("click", () => {
         pixels.forEach (pixel => {
-            let randomValue = Math.random();
+            let opacity = 0.1
             pixel.addEventListener("mousedown", () => {
-                pixel.style.backgroundColor = `rgba(0, 0, 0, ${randomValue})`;
+                pixel.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+                if (opacity === 0.1) {
+                    opacity = 0.2
+                } else if (opacity === 0.2) {
+                    opacity = 0.3
+                } else if (opacity === 0.3) {
+                    opacity = 0.4
+                } else if (opacity === 0.4) {
+                    opacity = 0.5
+                } else if (opacity === 0.5) {
+                    opacity = 0.6
+                } else if (opacity === 0.6) {
+                    opacity = 0.7
+                } else if (opacity === 0.7) {
+                    opacity = 0.8
+                } else if (opacity === 0.8) {
+                    opacity = 0.9
+                } else if (opacity === 0.9) {
+                    opacity = 1
+                };
             })
             pixel.addEventListener("mouseover", () => {
                 if (mouseIsClicked) {
-                    pixel.style.backgroundColor = `rgba(0, 0, 0, ${randomValue})`;
+                    pixel.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+                    if (opacity === 0.1) {
+                        opacity = 0.2
+                    } else if (opacity === 0.2) {
+                        opacity = 0.3
+                    } else if (opacity === 0.3) {
+                        opacity = 0.4
+                    } else if (opacity === 0.4) {
+                        opacity = 0.5
+                    } else if (opacity === 0.5) {
+                        opacity = 0.6
+                    } else if (opacity === 0.6) {
+                        opacity = 0.7
+                    } else if (opacity === 0.7) {
+                        opacity = 0.8
+                    } else if (opacity === 0.8) {
+                        opacity = 0.9
+                    } else if (opacity === 0.9) {
+                        opacity = 1
+                    }
                 }
             })
         })
     })
 };
 
+// Eraser
 function pixelEraser() {
     eraserBtn.addEventListener("click", () => {
         pixels.forEach (pixel => {
