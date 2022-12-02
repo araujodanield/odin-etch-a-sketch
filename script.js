@@ -1,9 +1,15 @@
 const body = document.querySelector("body");
+const header = document.getElementById("header");
 const canvas = document.getElementById("canvas");
+const buttons = document.getElementById("buttons");
+const footer = document.getElementById("footer");
 
 
 
 /// CREATE HTML ELEMENTS
+
+const title = document.createElement("h1")
+title.textContent = "Etch-a-Sketch"
 
 const colorBtn = document.createElement("input");
 colorBtn.type = "color";
@@ -32,14 +38,27 @@ let sizeNum = document.createElement("p");
 sizeNum.textContent = "Select a size";
 sizeNum.style.color = "white";
 
-body.appendChild(colorBtn).classList.add("btn");
-body.appendChild(blackBtn).classList.add("btn");
-body.appendChild(randomBtn).classList.add("btn");
-body.appendChild(shadowBtn).classList.add("btn");
-body.appendChild(eraserBtn).classList.add("btn");
-body.appendChild(clearBtn).classList.add("btn");
-body.appendChild(sizeSelector).classList.add("btn");
-body.appendChild(sizeNum);
+const author = document.createElement("p")
+author.textContent = "Created by"
+const githubIcon = document.createElement("i")
+githubIcon.classList.add("devicon-github-original")
+githubIcon.textContent = " araujodanield"
+const github = document.createElement("a")
+github.setAttribute("href", "https://github.com/araujodanield")
+github.setAttribute("target", "_blank")
+github.appendChild (githubIcon)
+
+header.appendChild(title)
+buttons.appendChild(colorBtn).classList.add("btn", "color-btn");
+buttons.appendChild(blackBtn).classList.add("btn", "black-btn");
+buttons.appendChild(randomBtn).classList.add("btn", "random-btn");
+buttons.appendChild(shadowBtn).classList.add("btn", "shadow-btn");
+buttons.appendChild(eraserBtn).classList.add("btn", "eraser-btn");
+buttons.appendChild(clearBtn).classList.add("btn", "clear-btn");
+buttons.appendChild(sizeSelector).classList.add("size-slider");
+buttons.appendChild(sizeNum).classList.add("size-text");;
+footer.appendChild(author)
+footer.appendChild(github)
 
 
 
