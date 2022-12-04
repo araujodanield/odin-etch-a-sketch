@@ -13,7 +13,7 @@ body {
     "header canvas"
     "toolbar canvas"
     "footer footer";
-    background-color: rgb(223, 193, 139);
+    background-image: linear-gradient( 180.3deg,  rgba(214,224,255,1) 37.2%, rgba(254,168,168,1) 137.3% );
 }
 
 #header {
@@ -31,7 +31,8 @@ body {
     justify-self: center;
     align-self: center;
     background-color: aliceblue;
-    border: 2px solid black;
+    border: 2px solid rgb(57, 57, 68);
+    box-shadow: -4px 16px 30px rgba(0, 0, 0, 0.5);
     cursor: crosshair;
     user-select: none;
     -webkit-user-drag: none;
@@ -39,17 +40,22 @@ body {
 }
 
 .pixel:hover {
-    background-color: rgb(204, 210, 216) ;
+    background-color: #7f799c8a ;
 }
 
 #buttons {
     grid-area: toolbar;
     display: flex;
     flex-direction: column;
-    padding: 50px 100px;
+    align-items: center;
+    padding: 50px 80px;
     gap: 20px;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.404);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.5);
     user-select: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;
@@ -58,12 +64,50 @@ body {
 }
 
 .btn {
-    height: 50px;
-    width: auto;
-    background-color: white;
+    box-shadow: 0px 10px 14px -7px #276873;
+	background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+	background-color:#b3aa59;
+	border-radius:8px;
+    border: none;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:20px;
+	font-weight:bold;
+	padding:13px 32px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3d768a;
 }
 
-.color-btn {}
+.btn:active,
+.active {
+    background:linear-gradient(to bottom, #bea327 5%, #269c53 100%);
+	background-color:#bc2dc9;
+	position:relative;
+	top:1px;
+}
+
+.color-btn {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100px;
+    height: 100px;
+    padding: 0;
+    border: none;
+    border-radius: 100%;
+}
+
+.color-btn::-webkit-color-swatch {
+    border-radius: 50%;
+    border: none;
+}
+
+.color-btn::-moz-color-swatch {
+    border-radius: 50%;
+    border: none;
+}
 
 .black-btn {}
 
@@ -90,7 +134,7 @@ body {
     font-size: 20px;
     gap: 10px;
     color: rgb(255, 245, 238);
-    background-color: rgb(94, 50, 14);
+    background-image: linear-gradient( 112.1deg,  rgba(32,38,57,1) 11.4%, rgba(63,76,119,1) 70.2% );
 }
 
 a{
@@ -103,7 +147,7 @@ i {
 }
 
 a:hover {
-    color: rgb(235, 210, 156);
-    text-shadow: 0px 0px 10px rgb(240, 232, 209);
+    color: rgb(179, 181, 248);
+    text-shadow: 0px 0px 10px rgb(209, 214, 240);
     transition: all 0.3s ease;
 }
