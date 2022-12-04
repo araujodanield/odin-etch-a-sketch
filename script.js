@@ -1,3 +1,5 @@
+/// CREATE HTML ELEMENTS
+
 const body = document.querySelector("body");
 const header = document.getElementById("header");
 const canvas = document.getElementById("canvas");
@@ -5,14 +7,12 @@ const buttons = document.getElementById("buttons");
 const footer = document.getElementById("footer");
 
 
-
-/// CREATE HTML ELEMENTS
-
 const title = document.createElement("h1")
 title.textContent = "Etch-a-Sketch"
 
 const colorBtn = document.createElement("input");
 colorBtn.type = "color";
+colorBtn.value = "#494752";
 
 const blackBtn = document.createElement("button");
 blackBtn.textContent = "Black Pen";
@@ -33,22 +33,26 @@ const sizeSelector = document.createElement("input");
 sizeSelector.type = "range";
 sizeSelector.min = 2;
 sizeSelector.max = 100;
+sizeSelector.defaultValue = 16;
 
 let sizeNum = document.createElement("p");
-sizeNum.textContent = "Select a size";
+sizeNum.textContent = sizeSelector.value + " X " + sizeSelector.value;
 sizeNum.style.color = "white";
 
-const author = document.createElement("p")
-author.textContent = "Created by"
-const githubIcon = document.createElement("i")
-githubIcon.classList.add("devicon-github-original")
-githubIcon.textContent = " araujodanield"
-const github = document.createElement("a")
-github.setAttribute("href", "https://github.com/araujodanield")
-github.setAttribute("target", "_blank")
-github.appendChild (githubIcon)
+const footText = document.createElement("p");
+footText.textContent = "Created by";
 
-header.appendChild(title)
+const githubIcon = document.createElement("i");
+githubIcon.classList.add("devicon-github-original");
+githubIcon.textContent = " araujodanield";
+
+const github = document.createElement("a")
+github.setAttribute("href", "https://github.com/araujodanield");
+github.setAttribute("target", "_blank");
+github.appendChild (githubIcon);
+
+
+header.appendChild(title);
 buttons.appendChild(colorBtn).classList.add("btn", "color-btn");
 buttons.appendChild(blackBtn).classList.add("btn", "black-btn");
 buttons.appendChild(randomBtn).classList.add("btn", "random-btn");
@@ -56,15 +60,15 @@ buttons.appendChild(shadowBtn).classList.add("btn", "shadow-btn");
 buttons.appendChild(eraserBtn).classList.add("btn", "eraser-btn");
 buttons.appendChild(clearBtn).classList.add("btn", "clear-btn");
 buttons.appendChild(sizeSelector).classList.add("size-slider");
-buttons.appendChild(sizeNum).classList.add("size-text");;
-footer.appendChild(author)
-footer.appendChild(github)
+buttons.appendChild(sizeNum).classList.add("size-text");
+footer.appendChild(footText);
+footer.appendChild(github);
 
 
 
 /// CREATE CANVAS
 
-// Add a pixel amount to the canvas div using CSS Grid to give all pixel the same size.
+// Add a pixel amount to the canvas with CSS Grid to give all pixels the same size.
 function createPixels(size) {
     canvas.style.gridTemplateColumns = `repeat(${size} , 1fr)`;
     canvas.style.gridTemplateRows = `repeat(${size} , 1fr)`;
@@ -76,41 +80,81 @@ function createPixels(size) {
         canvas.appendChild(px).classList.add("pixel");
     }
 };
-createPixels(16); // Default size when the page is loaded: 16x16.
+
+// Default size when the page is loaded: 16x16.
+createPixels(sizeSelector.value);
 
 
 
 /// DRAWING TOOLS
 
-// Logic to apply on the canvas. By setting this, the user can only draw when the left mouse button is pressed.
+// Select all the divs created by createPixels function.
+let pixels = document.querySelectorAll(".pixel");
+
+// Applied on the canvas. With this, the user can only draw when the left mouse button is pressed.
 let mouseIsClicked;
-body.addEventListener("mousedown", () => {
+window.addEventListener("mousedown", () => {
     mouseIsClicked = true;
 });
-body.addEventListener("mouseup", () => {
+window.addEventListener("mouseup", () => {
     mouseIsClicked = false;
 });
 
-let pixels = document.querySelectorAll(".pixel"); // Select all the divs created by createPixels function.
+// Applied on buttons. Remove the "pressed" style from other buttons when the user press a new one.
+function removePreviousPressed() {
+    if (colorBtn) {
+        blackBtn.classList.remove("active");
+        randomBtn.classList.remove("active");
+        shadowBtn.classList.remove("active");
+        eraserBtn.classList.remove("active");
+    };
+    if (blackBtn) {
+        colorBtn.classList.remove("active");
+        randomBtn.classList.remove("active");
+        shadowBtn.classList.remove("active");
+        eraserBtn.classList.remove("active");
+    };
+    if (randomBtn) {
+        colorBtn.classList.remove("active");
+        blackBtn.classList.remove("active");
+        shadowBtn.classList.remove("active");
+        eraserBtn.classList.remove("active");
+    };
+    if (shadowBtn) {
+        colorBtn.classList.remove("active");
+        blackBtn.classList.remove("active");
+        randomBtn.classList.remove("active");
+        eraserBtn.classList.remove("active");
+    };
+    if (eraserBtn) {
+        colorBtn.classList.remove("active");
+        blackBtn.classList.remove("active");
+        randomBtn.classList.remove("active");
+        shadowBtn.classList.remove("active");
+    };
+};
 
 
-// The default pen when the page is loaded.
+// Default pen when the page is loaded.
 function defaultPen() {
     pixels.forEach (pixel => {
         pixel.addEventListener("mousedown", () => {
-            pixel.style.backgroundColor = "rgb(35, 35, 40)";
+            pixel.style.backgroundColor = colorBtn.value;
         });
         pixel.addEventListener("mouseover", () => {
             if (mouseIsClicked) {
-                pixel.style.backgroundColor = "rgb(35, 35, 40)";
+                pixel.style.backgroundColor = colorBtn.value;
             };
         });
     });
 };
 
-// Allow the user to select a custom color for the pen and copy any colors on screen.
+// Allow the user to select a custom color or copy any color on screen.
 function colorPicker() {
     colorBtn.addEventListener("click", () => {
+        removePreviousPressed();
+        colorBtn.classList.add("active");
+
         pixels.forEach (pixel => {
             pixel.addEventListener("mousedown", () => {
                 pixel.style.backgroundColor = colorBtn.value;
@@ -118,15 +162,18 @@ function colorPicker() {
             pixel.addEventListener("mouseover", () => {
                 if (mouseIsClicked) {
                     pixel.style.backgroundColor = colorBtn.value;
-                }
+                };
             });
         });
     });
 };
 
-// A simple black pen.
+// A black pen.
 function blackPen() {
     blackBtn.addEventListener("click", () => {
+        removePreviousPressed();
+        blackBtn.classList.add("active");
+
         pixels.forEach (pixel => {
             pixel.addEventListener("mousedown", () => {
                 pixel.style.backgroundColor = "black";
@@ -134,39 +181,44 @@ function blackPen() {
             pixel.addEventListener("mouseover", () => {
                 if (mouseIsClicked) {
                     pixel.style.backgroundColor = "black";
-                }
+                };
             });
         });
     });
 };
 
-// Add a random color for each pixel on the interaction. To add a new color to a pixel that was already painted the user need to click the button again.
+// Add a random color for each pixel on interaction.
 function randomPen() {
     randomBtn.addEventListener("click", () => {
+        removePreviousPressed();
+        randomBtn.classList.add("active");
+
         pixels.forEach (pixel => {
-            let r = Math.floor(Math.random() * 255);
-            let g = Math.floor(Math.random() * 255);
-            let b = Math.floor(Math.random() * 255);
             pixel.addEventListener("mousedown", () => {
-                pixel.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-            })
+                pixel.style.backgroundColor = "none";
+            });
             pixel.addEventListener("mouseover", () => {
+                let r = Math.floor(Math.random() * 255);
+                let g = Math.floor(Math.random() * 255);
+                let b = Math.floor(Math.random() * 255);
                 if (mouseIsClicked) {
                     pixel.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-                }
-            })
-        })
-    })
+                };
+            });
+        });
+    });
 };
 
-// A pen that adds black color with 0.1 opacity to the pixel and increases its value with each interaction.
-// OBS: There are many ways to do this logic with less code, but due I'm trying to make this the most "beginner friendly" and visual possible, I opted for an 'if else' statement. It's possible to make this same "visual" logic using the 'switch' statement, but it will have more lines than 'if else'.
-function shadowPen() { 
+// Adds black color with 0.1 opacity to the pixel and increases its value on each interaction until reach 1.
+// OBS: There are many ways to do this logic with less code, but to make this the most visual and "beginner friendly" possible, I opted for an 'if else' statement.
+function shadowPen() {
     shadowBtn.addEventListener("click", () => {
+        removePreviousPressed();
+        shadowBtn.classList.add("active");
+
         pixels.forEach (pixel => {
-            let opacity = 0.1
-            pixel.addEventListener("mousedown", () => {
-                pixel.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+            let opacity = 0.1;
+            let changeOpacity = () => {
                 if (opacity === 0.1) {
                     opacity = 0.2;
                 } else if (opacity === 0.2) {
@@ -186,29 +238,15 @@ function shadowPen() {
                 } else if (opacity === 0.9) {
                     opacity = 1;
                 };
+            };
+            pixel.addEventListener("mousedown", () => {
+                pixel.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+                changeOpacity();
             });
             pixel.addEventListener("mouseover", () => {
                 if (mouseIsClicked) {
                     pixel.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
-                    if (opacity === 0.1) {
-                        opacity = 0.2;
-                    } else if (opacity === 0.2) {
-                        opacity = 0.3;
-                    } else if (opacity === 0.3) {
-                        opacity = 0.4;
-                    } else if (opacity === 0.4) {
-                        opacity = 0.5;
-                    } else if (opacity === 0.5) {
-                        opacity = 0.6;
-                    } else if (opacity === 0.6) {
-                        opacity = 0.7;
-                    } else if (opacity === 0.7) {
-                        opacity = 0.8;
-                    } else if (opacity === 0.8) {
-                        opacity = 0.9;
-                    } else if (opacity === 0.9) {
-                        opacity = 1;
-                    };
+                    changeOpacity();
                 };
             });
         });
@@ -218,10 +256,13 @@ function shadowPen() {
 // Allow the user to delete pixel color individually.
 function pixelEraser() {
     eraserBtn.addEventListener("click", () => {
+        removePreviousPressed();
+        eraserBtn.classList.add("active");
+
         pixels.forEach (pixel => {
             pixel.addEventListener("mousedown", () => {
                 pixel.style.backgroundColor = "";
-            })
+            });
             pixel.addEventListener("mouseover", () => {
                 if (mouseIsClicked) {
                     pixel.style.backgroundColor = "";
@@ -244,7 +285,7 @@ function clearCanvas() {
 
 /// CHANGE THE PIXEL AMOUNT IN THE CANVAS
 
-// Pick the user choice from slider and call the updateCanvas function.
+// Allow the user to select a new size for the canvas, delete all the current pixel divs and then call the updateCanvas function.
 function sizeSelect() {
     sizeSelector.addEventListener("mousemove", () => {
         sizeNum.textContent = sizeSelector.value + " X " + sizeSelector.value;
@@ -256,15 +297,16 @@ function sizeSelect() {
     });
 };
 
-// Pick the user choice from sizeSelect function, apply on canvas and re-select the pixels to make the drawing tools works with the new amount.
+// Apply the selection from the size slider and re-select the class of the new pixels to allow the drawing tools to work.
 function updateCanvas() {
     createPixels(sizeSelector.value);
     pixels = document.querySelectorAll(".pixel");
     defaultPen();
-}
+};
 
 
-// Call all the functions.
+
+/// Call all the tools functions.
 defaultPen();
 colorPicker();
 blackPen();
