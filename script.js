@@ -10,6 +10,9 @@ const footer = document.getElementById("footer");
 const title = document.createElement("h1")
 title.textContent = "Etch-a-Sketch"
 
+const subTitle = document.createElement("p")
+subTitle.textContent = "Create your amazing pixel art!"
+
 const colorBtn = document.createElement("input");
 colorBtn.type = "color";
 colorBtn.value = "#494752";
@@ -52,12 +55,13 @@ github.setAttribute("target", "_blank");
 github.appendChild (githubIcon);
 
 
-header.appendChild(title);
-buttons.appendChild(colorBtn).classList.add("btn", "color-btn");
-buttons.appendChild(blackBtn).classList.add("btn", "black-btn");
-buttons.appendChild(randomBtn).classList.add("btn", "random-btn");
-buttons.appendChild(shadowBtn).classList.add("btn", "shadow-btn");
-buttons.appendChild(eraserBtn).classList.add("btn", "eraser-btn");
+header.appendChild(title).classList.add("title");
+header.appendChild(subTitle).classList.add("sub-title");
+buttons.appendChild(colorBtn).classList.add("btn", "color-window");
+buttons.appendChild(blackBtn).classList.add("btn");
+buttons.appendChild(randomBtn).classList.add("btn");
+buttons.appendChild(shadowBtn).classList.add("btn");
+buttons.appendChild(eraserBtn).classList.add("btn");
 buttons.appendChild(clearBtn).classList.add("btn", "clear-btn");
 buttons.appendChild(sizeSelector).classList.add("size-slider");
 buttons.appendChild(sizeNum).classList.add("size-text");
@@ -103,34 +107,34 @@ window.addEventListener("mouseup", () => {
 // Applied on buttons. Remove the "pressed" style from other buttons when the user press a new one.
 function removePreviousPressed() {
     if (colorBtn) {
-        blackBtn.classList.remove("active");
-        randomBtn.classList.remove("active");
-        shadowBtn.classList.remove("active");
-        eraserBtn.classList.remove("active");
+        blackBtn.classList.remove("black-btn");
+        randomBtn.classList.remove("random-btn");
+        shadowBtn.classList.remove("shadow-btn");
+        eraserBtn.classList.remove("eraser-btn");
     };
     if (blackBtn) {
-        colorBtn.classList.remove("active");
-        randomBtn.classList.remove("active");
-        shadowBtn.classList.remove("active");
-        eraserBtn.classList.remove("active");
+        colorBtn.classList.remove("color-btn");
+        randomBtn.classList.remove("random-btn");
+        shadowBtn.classList.remove("shadow-btn");
+        eraserBtn.classList.remove("eraser-btn");
     };
     if (randomBtn) {
-        colorBtn.classList.remove("active");
-        blackBtn.classList.remove("active");
-        shadowBtn.classList.remove("active");
-        eraserBtn.classList.remove("active");
+        colorBtn.classList.remove("color-btn");
+        blackBtn.classList.remove("black-btn");
+        shadowBtn.classList.remove("shadow-btn");
+        eraserBtn.classList.remove("eraser-btn");
     };
     if (shadowBtn) {
-        colorBtn.classList.remove("active");
-        blackBtn.classList.remove("active");
-        randomBtn.classList.remove("active");
-        eraserBtn.classList.remove("active");
+        colorBtn.classList.remove("color-btn");
+        blackBtn.classList.remove("black-btn");
+        randomBtn.classList.remove("random-btn");
+        eraserBtn.classList.remove("eraser-btn");
     };
     if (eraserBtn) {
-        colorBtn.classList.remove("active");
-        blackBtn.classList.remove("active");
-        randomBtn.classList.remove("active");
-        shadowBtn.classList.remove("active");
+        colorBtn.classList.remove("color-btn");
+        blackBtn.classList.remove("black-btn");
+        randomBtn.classList.remove("random-btn");
+        shadowBtn.classList.remove("shadow-btn");
     };
 };
 
@@ -153,7 +157,7 @@ function defaultPen() {
 function colorPicker() {
     colorBtn.addEventListener("click", () => {
         removePreviousPressed();
-        colorBtn.classList.add("active");
+        colorBtn.classList.add("color-btn");
 
         pixels.forEach (pixel => {
             pixel.addEventListener("mousedown", () => {
@@ -172,7 +176,7 @@ function colorPicker() {
 function blackPen() {
     blackBtn.addEventListener("click", () => {
         removePreviousPressed();
-        blackBtn.classList.add("active");
+        blackBtn.classList.add("black-btn");
 
         pixels.forEach (pixel => {
             pixel.addEventListener("mousedown", () => {
@@ -191,7 +195,7 @@ function blackPen() {
 function randomPen() {
     randomBtn.addEventListener("click", () => {
         removePreviousPressed();
-        randomBtn.classList.add("active");
+        randomBtn.classList.add("random-btn");
 
         pixels.forEach (pixel => {
             pixel.addEventListener("mousedown", () => {
@@ -214,7 +218,7 @@ function randomPen() {
 function shadowPen() {
     shadowBtn.addEventListener("click", () => {
         removePreviousPressed();
-        shadowBtn.classList.add("active");
+        shadowBtn.classList.add("shadow-btn");
 
         pixels.forEach (pixel => {
             let opacity = 0.1;
@@ -257,7 +261,7 @@ function shadowPen() {
 function pixelEraser() {
     eraserBtn.addEventListener("click", () => {
         removePreviousPressed();
-        eraserBtn.classList.add("active");
+        eraserBtn.classList.add("eraser-btn");
 
         pixels.forEach (pixel => {
             pixel.addEventListener("mousedown", () => {
