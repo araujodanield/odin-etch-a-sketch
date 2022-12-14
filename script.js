@@ -306,6 +306,7 @@ function updateCanvas() {
     createPixels(sizeSelector.value);
     pixels = document.querySelectorAll(".pixel");
     defaultPen();
+    removePreviousPressed();
 };
 
 
