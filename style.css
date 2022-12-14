@@ -132,7 +132,7 @@ body {
 }
 
 .color-window:hover {
-    background: rgba(255, 255, 255, 0.7);
+    background: linear-gradient(to top, #f5f2ec 5%, #eeeae6 100%);
     border: none;
     transition: all 0.2s ease-out;
 }
