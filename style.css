@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Freehand&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Monoton&display=swap');
 
 * {
     margin: 0;
@@ -7,7 +7,7 @@
 }
 
 body {
-    background-image: linear-gradient(112.4deg, #b0aee1 25.9%, #87c5eb 150.5%);
+    background-image: linear-gradient(179.4deg, #fdf0e9 2.2%, #ffd0c2 96.2%);
     height: 100vh;
     display: grid;
     grid-template-columns: 30% auto;
@@ -28,22 +28,18 @@ body {
 }
 
 .title {
-    margin-bottom: 15px;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 40px;
-    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
-    background: radial-gradient(circle farthest-corner at top left, #ffacae 0%, #dce17b 150%);
-    background-clip: text;
-    -webkit-background-clip: text;
+    padding: 0;
+    font-family: 'Monoton', cursive;
+    font-size: 50px;
     -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.5);
+    -webkit-text-stroke: 1px #8b8878;
 }
 
 .sub-title {
-    font-family: 'Freehand', cursive;
+    font-family: 'Dancing Script', cursive;
     font-size: 30px;
-    color: #ffe734;
-    text-shadow: 5px 5px 10px rgba(64, 79, 94, 0.5);
+    color: #ff0e0e;
+    text-shadow: -5px 5px 10px rgba(64, 79, 94, 0.5);
 }
 
 
@@ -52,11 +48,11 @@ body {
     width: 800px;
     height: 800px;
     display: grid;
-    justify-self: center;
     align-self: center;
+    margin-left: 5%;
     background-color: aliceblue;
-    border: 2px solid #404f5e;
-    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.5);
+    border: 2px solid #494544;
+    box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.3);
     cursor: crosshair;
     user-select: none;
     -webkit-user-drag: none;
@@ -64,7 +60,7 @@ body {
 }
 
 .pixel:hover {
-    background-color: rgba(65, 73, 95, 0.2);
+    background-color: rgba(131, 124, 120, 0.5);
 }
 
 
@@ -79,7 +75,7 @@ body {
     gap: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
-    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.5);
     background-color: rgba(17, 25, 40, 0.75);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
@@ -91,9 +87,9 @@ body {
 .btn {
 	display: inline-block;
 	padding: 13px 32px;
-	background: linear-gradient(to bottom, #8eadbb 5%, #809fa8 100%);
+	background: linear-gradient(to bottom, #efeadb 5%, #837c78 100%);
     box-shadow: 0px 10px 14px -7px #425055;
-    border: 2px solid transparent;
+    border: 2px solid #837c78;
 	border-radius: 20px;
 	color: white;
 	font-family: Arial;
@@ -105,7 +101,7 @@ body {
 }
 
 .btn:hover {
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(131, 124, 120, 0.5);
     transition: all 0.2s ease-out;
 }
 
@@ -202,7 +198,7 @@ body {
 }
 
 .clear-btn:active {
-    background: linear-gradient(to top, #8eadbb 5%, #809fa8 100%);
+    background: linear-gradient(to top, #efeadb 5%, #837c78 100%);
     box-shadow: 0px 0px 15px white;
     text-shadow:0px 0px 10px white;
     position:relative;
@@ -233,8 +229,8 @@ body {
     gap: 10px;
     color: #fff5ee;
     font-size: 20px;
-    background-image: linear-gradient(94.3deg, #1a2140 10.9%, #515473 87.1%);
-    border-top: 1px solid #404f5e;
+    background-image: linear-gradient(178.2deg, #b39e9e 10.9%, #645045 62.6%);
+    border-top: 1px solid #b39e9e;
 }
 
 a{
@@ -247,7 +243,7 @@ i {
 }
 
 a:hover {
-    color: #b9ddff;
-    text-shadow: 0px 0px 10px #e5f2fa;
+    color: #ffcfb9;
+    text-shadow: 0px 0px 10px #faf5e5;
     transition: all 0.3s ease;
 }
