@@ -1,4 +1,4 @@
-<img height="15px" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/322/flag-united-states_1f1fa-1f1f8.png">[ Read this document in english](README.md)
+<img height="15px" src="https://em-content.zobj.net/thumbs/120/twitter/322/flag-united-states_1f1fa-1f1f8.png">[ Read this document in english](README.md)
 
 # Etch-a-Sketch - O criador de Pixel Art
 
